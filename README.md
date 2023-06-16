@@ -1,2 +1,3 @@
-# wheather_app
-wheather app
+# weather_app
+
+weather app
