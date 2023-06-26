@@ -11,7 +11,7 @@
     },
     "ignorePatterns": ["webpack.config.js", "**/dist/*.js","*.json"],
     "rules": {
-
-        "no-console":"off"
-    }
+        "nonblock-statement-body-position":"off"
+    },
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": false, "optionalDependencies": false, "peerDependencies": false}]
 }
