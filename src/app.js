@@ -6,52 +6,32 @@ import errors from './errors';
 
 export default class App {
   static init() {
-    this.DOM = this.cashDOM();
+    this.DOM = this.cacheDOM();
     this.processData();
     this.formSubmit();
   }
 
-  static cashDOM() {
-    const main = document.querySelector('.main');
-    const location = document.querySelector('.location');
-    const date = document.querySelector('.date-time');
-    const icon = document.querySelector('.image-icon');
-    const temp = document.querySelector('.temp');
-    const desc = document.querySelector('.day-desc');
-    const feelsLike = document.querySelector('.feels-like');
-    const windSpeed = document.querySelector('.wind-speed');
-    const loader = document.querySelector('.loader');
-    const week = document.querySelector('.week');
-    const visibility = document.getElementById('visibility');
-    const humidity = document.getElementById('humidity');
-    const chance = document.getElementById('chance');
-    const preasure = document.getElementById('preasure');
-    const uv = document.getElementById('uv');
-    const wind = document.getElementById('wind');
-    const toggleBtn = document.querySelector('.metric-toggle');
-    const form = document.querySelector('.formSubmit');
-    const error = document.querySelector('.error');
-
+  static cacheDOM() {
     return {
-      main,
-      form,
-      location,
-      date,
-      icon,
-      temp,
-      desc,
-      feelsLike,
-      windSpeed,
-      week,
-      visibility,
-      humidity,
-      chance,
-      preasure,
-      uv,
-      wind,
-      loader,
-      toggleBtn,
-      error,
+      main: document.querySelector('.main'),
+      location: document.querySelector('.location'),
+      date: document.querySelector('.date-time'),
+      icon: document.querySelector('.image-icon'),
+      temp: document.querySelector('.temp'),
+      desc: document.querySelector('.day-desc'),
+      feelsLike: document.querySelector('.feels-like'),
+      windSpeed: document.querySelector('.wind-speed'),
+      loader: document.querySelector('.loader'),
+      week: document.querySelector('.week'),
+      visibility: document.getElementById('visibility'),
+      humidity: document.getElementById('humidity'),
+      chance: document.getElementById('chance'),
+      preasure: document.getElementById('preasure'),
+      uv: document.getElementById('uv'),
+      wind: document.getElementById('wind'),
+      toggleBtn: document.querySelector('.metric-toggle'),
+      form: document.querySelector('.formSubmit'),
+      error: document.querySelector('.error'),
     };
   }
 
