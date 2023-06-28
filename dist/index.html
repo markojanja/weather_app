@@ -2,10 +2,10 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -30,16 +30,14 @@
         </nav>
         <header>
             <form class="formSubmit" action="">
-                <input id="input" type="text" placeholder="Enter location" required autocomplete="off" autofocus>
-                <button id="submitBtn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <input id="input" type="text" placeholder="Enter location" required autocomplete="off" autofocus />
+                <button id="submitBtn">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
             </form>
             <div class="error hide error-card">
-                <h3>Invalid input!Please try again</h3>
+                <h3>City not found!Please try again</h3>
             </div>
-            <div class="error2 hide error-card">
-                <h3 >City not found!Please try again</h3>
-            </div>
-
         </header>
 
         <main class="main">
@@ -50,7 +48,7 @@
                         <p class="date-time"></p>
                     </div>
                     <div class="image-container">
-                        <img alt="weather-icon" class="image-icon">
+                        <img alt="weather-icon" class="image-icon" />
                         <h4 class="temp"></h4>
                     </div>
                     <div class="weather-desc">
@@ -90,12 +88,9 @@
                     <i class="fa-solid fa-wind"></i>
                     <p id="wind">...</p>
                 </div>
-
             </div>
         </main>
-        <section class="week">
-
-        </section>
+        <section class="week"></section>
     </div>
     <script src="main.js"></script>
 </body>

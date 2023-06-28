@@ -38,7 +38,6 @@ const api = (() => {
       date: location.localtime,
       current,
       week: getWeekData(forecast.forecastday),
-      forecast,
     };
   };
 

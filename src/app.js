@@ -1,11 +1,13 @@
 /* eslint-disable no-param-reassign */
 import { format } from 'date-fns';
 import api from './api';
+import handlers from './handlers';
+import errors from './errors';
 
 export default class App {
   static init() {
     this.DOM = this.cashDOM();
-    App.processData();
+    this.processData();
     this.formSubmit();
   }
 
@@ -28,7 +30,7 @@ export default class App {
     const wind = document.getElementById('wind');
     const toggleBtn = document.querySelector('.metric-toggle');
     const form = document.querySelector('.formSubmit');
-    const error = document.querySelector('.error2');
+    const error = document.querySelector('.error');
 
     return {
       main,
@@ -56,14 +58,12 @@ export default class App {
   static async processData(name = 'London', isMetric = true) {
     try {
       const data = await api.getData(name);
-      console.log(data);
       this.toggleMetric(this.DOM, data, isMetric);
       this.displayData(this.DOM, data, isMetric);
       this.displayWeekData(this.DOM, data, isMetric);
-      this.hideElements([this.DOM.loader, this.DOM.error]);
+      handlers.hideElements([this.DOM.loader, this.DOM.error]);
     } catch (err) {
-      console.log(err);
-      this.handleError();
+      errors.handleInputError(this.DOM, 'City not found');
       this.DOM.toggleBtn.disabled = true;
     }
   }
@@ -73,6 +73,7 @@ export default class App {
     dom.location.textContent = `${data.city}, ${data.country}`;
     dom.date.textContent = `${format(
       new Date(data.date),
+      // eslint-disable-next-line comma-dangle
       'EEE dd, MMM yyyy | HH:MM'
     )}`;
     dom.temp.textContent = isMetric
@@ -120,9 +121,11 @@ export default class App {
         <p class="card-text">${text}</p>
         <p class="min">${min}</p>
       </div>`;
+      return 1;
     });
-    this.showElements([this.DOM.week, this.DOM.main]);
+    handlers.showElements([this.DOM.week, this.DOM.main]);
   }
+
   static toggleMetric(dom, data, isMetric) {
     const ball = document.querySelector('.ball');
     if (isMetric && ball.classList.contains('active')) {
@@ -137,52 +140,26 @@ export default class App {
 
     dom.toggleBtn.addEventListener('click', () => {
       isMetric = !isMetric;
-      if (!isMetric) {
-        ball.classList.add('active');
-      }
-      if (isMetric) {
-        ball.classList.remove('active');
-      }
-
+      // eslint-disable-next-line no-unused-expressions
+      isMetric ? ball.classList.remove('active') : ball.classList.add('active');
       this.displayData(dom, data, isMetric);
       this.displayWeekData(dom, data, isMetric);
       this.DOM.loader.classList.add('hide');
     });
   }
+
   static formSubmit() {
     this.DOM.form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      this.DOM.loader.classList.remove('hide');
+      handlers.showElements([this.DOM.loader]);
       const input = document.querySelector('#input').value.trim();
-      const error = document.querySelector('.error');
-      error.classList.add('hide');
+      this.DOM.error.classList.add('hide');
       if (input === '') {
-        console.log('form is empty');
-        this.hideElements([
-          this.DOM.loader,
-          this.DOM.main,
-          this.DOM.week,
-          this.DOM.error,
-        ]);
-        this.showElements([error]);
-        this.DOM.toggleBtn.disabled = true;
+        errors.handleInputError(this.DOM, 'Invalid input.Please try again');
       } else {
         this.processData(input);
         this.DOM.form.reset();
       }
     });
-  }
-
-  static handleError() {
-    this.hideElements([this.DOM.loader, this.DOM.main, this.DOM.week]);
-    this.showElements([this.DOM.error]);
-  }
-  static hideElements(arr) {
-    arr.forEach((element) => {
-      element.classList.add('hide');
-    });
-  }
-  static showElements(arr) {
-    arr.forEach((element) => element.classList.remove('hide'));
   }
 }
