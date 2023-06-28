@@ -11,6 +11,7 @@
     },
     "ignorePatterns": ["webpack.config.js", "**/dist/*.js","*.json"],
     "rules": {
-        "nonblock-statement-body-position":"off"
+        "nonblock-statement-body-position":"off",
+        "no-param-reassign":"off"
     }
 }

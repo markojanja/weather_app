@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 import { format } from 'date-fns';
 import api from './api';
 import handlers from './handlers';
